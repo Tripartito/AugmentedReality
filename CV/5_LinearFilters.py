@@ -76,10 +76,9 @@ def GaussianKernel(ksize):
     return krn
 
 # Normalized Gaussian Filter
-def GaussianFilter(img):
+def GaussianFilter(img, ksize):
 
     #Gaussian Kernel
-    ksize = 31
     krad = int(ksize / 2)
     krn = GaussianKernel(ksize)
 
@@ -93,7 +92,7 @@ def main():
     img = cv2.imread("sonic.jpg", cv2.IMREAD_COLOR)
     img = img / 255.0
     #filtered = BoxFilter(img, 5)
-    filtered = GaussianFilter(img)
+    filtered = GaussianFilter(img, 31)
     cv2.imshow("Original", img)
     cv2.imshow("Filtered", filtered)
     cv2.waitKey(0)
