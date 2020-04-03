@@ -19,8 +19,9 @@ def FilterImage(img, framed, ksize, krn):   # Apply filter to image
     height = shape[0]
     width = shape[1]
 
-    # Method 1 (Optimal)
     fil = np.zeros(img.shape)
+
+    # Method 1 (Optimal)
     for i in range(0, height):
         for j in range(0, width):
             fil[i, j] = (framed[i:i+ksize, j:j+ksize] * krn[:, :, np.newaxis]).sum(axis=(0, 1))
@@ -37,10 +38,9 @@ def FilterImage(img, framed, ksize, krn):   # Apply filter to image
     return fil
 
 # Normalized Box Filter
-def BoxFilter(img, blur):
+def BoxFilter(img, ksize):  #ksize = kernel size ("diameter")
 
     # Kernel definition
-    ksize = blur                    # kernel size ("diameter")
     krad = int(ksize / 2)           # kernel radius
     krn = np.ones((ksize, ksize))   # create grid
     krn /= krn.sum()                # normalize kernel
